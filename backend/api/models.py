@@ -33,7 +33,7 @@ class BaseEvent(models.Model):
 class Event(BaseEvent):
 
     def __str__(self):
-        return f'Мероприятие {self.name}'
+        return f'{self.name}'
 
     class Meta:
         verbose_name = 'Мероприятие'
@@ -49,7 +49,7 @@ class Poll(BaseEvent):
     )
 
     def __str__(self):
-        return f'Опрос {self.name}'
+        return f'{self.name}'
 
     class Meta:
         verbose_name = 'Опрос'
@@ -77,7 +77,7 @@ class PollOption(models.Model):
         default_related_name = 'poll_options'
 
 
-class InvitationCode(models.Model):
+class AnonUser(models.Model):
     code = models.CharField(
         max_length=4,
         verbose_name='Код',
@@ -92,9 +92,9 @@ class InvitationCode(models.Model):
         return self.code
 
     class Meta:
-        verbose_name = 'Код'
-        verbose_name_plural = 'Коды'
-        default_related_name = 'codes'
+        verbose_name = 'Анонимный пользователь'
+        verbose_name_plural = 'Анонимные пользователи'
+        default_related_name = 'anon_users'
 
 
 class Vote(models.Model):
@@ -108,10 +108,10 @@ class Vote(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Вариант ответа',
     )
-    invitation_code = models.ForeignKey(
-        InvitationCode,
+    anon_user = models.ForeignKey(
+        AnonUser,
         on_delete=models.CASCADE,
-        verbose_name='Код идентификации',
+        verbose_name='Анонимный пользователь',
     )
 
     def __str__(self):

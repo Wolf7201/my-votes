@@ -3,14 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+my-voting-app/
+
 # C extensions
 *.so
-<<<<<<< HEAD
-
 staticfiles/
-
-=======
->>>>>>> main
 # Distribution / packaging
 .Python
 build/
